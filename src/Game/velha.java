@@ -76,7 +76,6 @@ public class velha {
 			this.ganhador = 1;
 		}
 		cont = 0;
-		
 		for (int i = 0; i < teste.length; i++) {
 			for (int j = 0; j < teste[0].length; j++) {
 				if (i==j) {
@@ -102,6 +101,7 @@ public class velha {
 		if (cont == 3) {
 			this.ganhador = 1;
 		}
+		cont = 0;
 		for (int j = 0; j < teste.length; j++) {
 			if (teste[0][j].equals(" O ")) {
 				cont++;
@@ -182,10 +182,11 @@ public class velha {
 		if (cont == 3) {
 			this.ganhador = 2;
 		}
+		cont = 0;
 		if (this.ganhador == 0) {
 			for (int i = 0; i < teste.length; i++) {
 				for (int j = 0; j < teste[0].length; j++) {
-					if (!teste[i][j].equals("   ")) {
+					if (jogo[i][j].equals(" X ") || jogo[i][j].equals(" O ")) {
 						cont++;
 					}
 				}
@@ -280,14 +281,32 @@ public class velha {
 		System.out.println("-----------\t\t digite o número representado. ");
 		System.out.println(" 7 | 8 | 9 \t\t ");
 	}
+	public void resultado(String j1, String j2) {
+		if (ganhador == 1) {
+			if (j1.equals("X")) {
+				System.out.println("Jogador 1 \"X\" ganhou!");
+			} else {
+				System.out.println("Jogador 2 \"X\" ganhou!");
+			}
+		} else if (ganhador == 2) {
+			if (j1.equals("O")) {
+				System.out.println("Jogador 1 \"O\" ganhou!");
+			} else {
+				System.out.println("Jogador 2 \"O\" ganhou!");
+			}
+		} else {
+			System.out.println("Deu velha... Empate!");
+		}
+	}
 	public void imprimirJogo() {
 		System.out.println();
 		System.out.println("            Tabuleiro            ");
 		System.out.println();
-		System.out.println(jogo[0][0] + "||" + jogo[0][1] + "||" + jogo[0][2]);
-		System.out.println("=============");
-		System.out.println(jogo[1][0] + "||" + jogo[1][1] + "||" + jogo[1][2]);
-		System.out.println("=============");
-		System.out.println(jogo[2][0] + "||" + jogo[2][1] + "||" + jogo[2][2]);
+		System.out.println(jogo[0][0] + "||" + jogo[0][1] + "||" + jogo[0][2] + "\t\t 1 | 2 | 3 ");
+		System.out.println("-------------" + "\t\t-----------");
+		System.out.println(jogo[1][0] + "||" + jogo[1][1] + "||" + jogo[1][2] + "\t\t 4 | 5 | 6 ");
+		System.out.println("-------------" + "\t\t-----------");
+		System.out.println(jogo[2][0] + "||" + jogo[2][1] + "||" + jogo[2][2] + "\t\t 7 | 8 | 9 ");
+		System.out.println();
 	}
 }
