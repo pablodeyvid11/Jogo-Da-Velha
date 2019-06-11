@@ -302,11 +302,11 @@ public class velha {
 		System.out.println();
 		System.out.println("            Tabuleiro            ");
 		System.out.println();
-		System.out.println(jogo[0][0] + "||" + jogo[0][1] + "||" + jogo[0][2] + "\t\t 1 | 2 | 3 ");
-		System.out.println("-------------" + "\t\t-----------");
-		System.out.println(jogo[1][0] + "||" + jogo[1][1] + "||" + jogo[1][2] + "\t\t 4 | 5 | 6 ");
-		System.out.println("-------------" + "\t\t-----------");
-		System.out.println(jogo[2][0] + "||" + jogo[2][1] + "||" + jogo[2][2] + "\t\t 7 | 8 | 9 ");
+		System.out.println(jogo[0][0] + "|" + jogo[0][1] + "|" + jogo[0][2] + "\t\t 1 | 2 | 3 ");
+		System.out.println("-----------" + "\t\t-----------");
+		System.out.println(jogo[1][0] + "|" + jogo[1][1] + "|" + jogo[1][2] + "\t\t 4 | 5 | 6 ");
+		System.out.println("-----------" + "\t\t-----------");
+		System.out.println(jogo[2][0] + "|" + jogo[2][1] + "|" + jogo[2][2] + "\t\t 7 | 8 | 9 ");
 		System.out.println();
 	}
 }

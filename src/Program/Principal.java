@@ -29,7 +29,7 @@ public class Principal {
 			System.out.print("O primeiro jogador escolhe X ou O? ");
 			String j1 = sc.next().toUpperCase().trim();
 			while (!j1.equals("X") && !j1.equals("O")) {
-				System.out.print("Erro de parâmetro! %nDigite sua escolha novamente: ");
+				System.out.printf("Erro de parâmetro! %nDigite sua escolha novamente: ");
 				j1 = sc.next().toUpperCase().trim();
 			}
 			String j2;
