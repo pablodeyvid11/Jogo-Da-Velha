@@ -78,7 +78,7 @@ public class Principal {
 			break;
 		}
 	}
-
+	
 	public static void jogada(int jogada, boolean peca) {
 		int i, j;
 		if (jogada == 1) {
@@ -116,188 +116,7 @@ public class Principal {
 		}
 	}
 
-	public static void quemGanhou() {
-		String[][] teste = jogo;
-		int cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[0][j].equals(" X ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 1;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[1][j].equals(" X ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 1;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[2][j].equals(" X ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 1;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[j][0].equals(" X ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 1;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[j][1].equals(" X ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 1;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[j][2].equals(" X ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 1;
-		}
-		cont = 0;
-		for (int i = 0; i < teste.length; i++) {
-			for (int j = 0; j < teste[0].length; j++) {
-				if (i == j) {
-					if (teste[i][j].equals(" X ")) {
-						cont++;
-					}
-				}
-			}
-		}
-		if (cont == 3) {
-			ganhador = 1;
-		}
-		cont = 0;
-		for (int i = 0; i < teste.length; i++) {
-			for (int j = 0; j < teste[0].length; j++) {
-				if ((i + 1) + (j + 1) == 4) {
-					if (teste[i][j].equals(" X ")) {
-						cont++;
-					}
-				}
-			}
-		}
-		if (cont == 3) {
-			ganhador = 1;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[0][j].equals(" O ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 2;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[1][j].equals(" O ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 2;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[2][j].equals(" O ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 2;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[j][0].equals(" O ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 2;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[j][1].equals(" O ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 2;
-		}
-		cont = 0;
-		for (int j = 0; j < teste.length; j++) {
-			if (teste[j][2].equals(" O ")) {
-				cont++;
-			}
-		}
-		if (cont == 3) {
-			ganhador = 2;
-		}
-		cont = 0;
-
-		for (int i = 0; i < teste.length; i++) {
-			for (int j = 0; j < teste[0].length; j++) {
-				if (i == j) {
-					if (teste[i][j].equals(" O ")) {
-						cont++;
-					}
-				}
-			}
-		}
-		if (cont == 3) {
-			ganhador = 2;
-		}
-		cont = 0;
-		for (int i = 0; i < teste.length; i++) {
-			for (int j = 0; j < teste[0].length; j++) {
-				if ((i + 1) + (j + 1) == 4) {
-					if (teste[i][j].equals(" O ")) {
-						cont++;
-					}
-				}
-			}
-		}
-		if (cont == 3) {
-			ganhador = 2;
-		}
-		cont = 0;
-		if (ganhador == 0) {
-			for (int i = 0; i < teste.length; i++) {
-				for (int j = 0; j < teste[0].length; j++) {
-					if (jogo[i][j].equals(" X ") || jogo[i][j].equals(" O ")) {
-						cont++;
-					}
-				}
-			}
-			if (cont == 9) {
-				ganhador = 3;
-			}
-			cont = 0;
-		}
-
-	}
-
 	public static boolean testeCompatibilidade(int jogada) {
-		String[][] teste = jogo;
 		int i, j;
 		if (jogada == 1) {
 			i = 0;
@@ -327,11 +146,125 @@ public class Principal {
 			i = 2;
 			j = 2;
 		}
-		if (teste[i][j].equals(" X ") || teste[i][j].equals(" O ")) {
+		if (!jogo[i][j].equals("   ")) {
 			return true;
 		} else {
 			return false;
 		}
+	}
+	
+	public static void quemGanhou() {
+		int cont = 0;
+		for (int i = 0; i < jogo.length; i++) {
+			for (int j = 0; j < jogo[0].length; j++) {
+				if (jogo[i][j].equals(" X ")) {
+					cont++;
+				}
+			}
+			if (cont == 3) {
+				ganhador = 1;
+			}
+			cont = 0;
+		}
+		for (int i = 0; i < jogo.length; i++) {
+			for (int j = 0; j < jogo[0].length; j++) {
+				if (jogo[j][i].equals(" X ")) {
+					cont++;
+				}
+			}
+			if (cont == 3) {
+				ganhador = 1;
+			}
+			cont = 0;
+		}
+		for (int i = 0; i < jogo.length; i++) {
+			for (int j = 0; j < jogo[0].length; j++) {
+				if (i == j) {
+					if (jogo[i][j].equals(" X ")) {
+						cont++;
+					}
+				}
+			}
+		}
+		if (cont == 3) {
+			ganhador = 1;
+		}
+		cont = 0;
+		for (int i = 0; i < jogo.length; i++) {
+			for (int j = 0; j < jogo[0].length; j++) {
+				if ((i + 1) + (j + 1) == 4) {
+					if (jogo[i][j].equals(" X ")) {
+						cont++;
+					}
+				}
+			}
+		}
+		if (cont == 3) {
+			ganhador = 1;
+		}
+		cont = 0;
+		for (int i = 0; i < jogo.length; i++) {
+			for (int j = 0; j < jogo[0].length; j++) {
+				if (jogo[i][j].equals(" O ")) {
+					cont++;
+				}
+			}
+			if (cont == 3) {
+				ganhador = 1;
+			}
+			cont = 0;
+		}
+		for (int i = 0; i < jogo.length; i++) {
+			for (int j = 0; j < jogo[0].length; j++) {
+				if (jogo[j][i].equals(" O ")) {
+					cont++;
+				}
+			}
+			if (cont == 3) {
+				ganhador = 1;
+			}
+			cont = 0;
+		}
+		for (int i = 0; i < jogo.length; i++) {
+			for (int j = 0; j < jogo[0].length; j++) {
+				if (i == j) {
+					if (jogo[i][j].equals(" O ")) {
+						cont++;
+					}
+				}
+			}
+		}
+		if (cont == 3) {
+			ganhador = 2;
+		}
+		cont = 0;
+		for (int i = 0; i < jogo.length; i++) {
+			for (int j = 0; j < jogo[0].length; j++) {
+				if ((i + 1) + (j + 1) == 4) {
+					if (jogo[i][j].equals(" O ")) {
+						cont++;
+					}
+				}
+			}
+		}
+		if (cont == 3) {
+			ganhador = 2;
+		}
+		cont = 0;
+		if (ganhador == 0) {
+			for (int i = 0; i < jogo.length; i++) {
+				for (int j = 0; j < jogo[0].length; j++) {
+					if (!jogo[i][j].equals("   ")) {
+						cont++;
+					}
+				}
+			}
+			if (cont == 9) {
+				ganhador = 3;
+			}
+			cont = 0;
+		}
+
 	}
 
 	public static void jogoBase() {
