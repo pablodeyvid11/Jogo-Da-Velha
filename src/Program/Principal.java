@@ -22,11 +22,82 @@ public class Principal {
 			System.out.printf("Erro de parâmetro! %nDigite o modo de jogo novamente: ");
 			modo = sc.nextByte();
 		}
-		switch (modo) {
-		case 1:
+		if (modo == 1) {
 
-			break;
-		case 2:
+			System.out.println();
+			System.out.printf("Níveis: %n1- Fácil; %n2- Médio; %n3- Difícil.%n%n");
+			System.out.print("Faça sua escolha: ");
+			int nivel = sc.nextInt();
+			while (nivel < 1 || nivel > 3) {
+				System.out.printf("Erro de parâmetro! %nDigite sua escolha novamente: ");
+				nivel = sc.nextInt();
+			}
+			System.out.printf("%nO jogador escolhe \"X\" ou \"O\"? ");
+			String j2, j1 = sc.next().trim().toUpperCase();
+			while (!j1.equals("X") && !j1.equals("O")) {
+				System.out.printf("Erro de parâmetro! %nDigite sua escolha novamente: ");
+				j1 = sc.next().toUpperCase().trim();
+			}
+			if (j1.equals("X")) {
+				System.out.printf("%nO jogador ficou com \"X\"; %nO computador ficou com \"O\". ");
+				j2 = "O";
+			} else {
+				System.out.printf("%nO jogador ficou com \"O\"; %nO computador ficou com \"X\".%n");
+				j2 = "X";
+			}
+			jogoBase();
+			Random aleatorio = new Random();
+			boolean ordem = aleatorio.nextBoolean();
+			while (ganhador == 0) {
+				System.out.println();
+				int jogada;
+				if (ordem) {
+					if (j1.equals("X")) {
+						System.out.print("Jogador \"X\" faça a sua jogada: ");
+						jogada = sc.nextInt();
+						while (jogada < 1 || jogada > 9 || testeCompatibilidade(jogada)) {
+							System.out.printf("%nJogada inválida!%nPor favor digite novamente: ");
+							jogada = sc.nextInt();
+							System.out.println();
+						}
+					} else {
+						System.out.println("Vez do computado: ");
+						jogada = aleatorio.nextInt(9) + 1;
+						while (testeCompatibilidade(jogada)) {
+							jogada = aleatorio.nextInt(9) + 1;
+						}
+						System.out.println("O computador jogou na casa: " + jogada);
+					}
+				} else {
+					if (j1.equals("O")) {
+						System.out.print("Jogador \"O\" faça a sua jogada: ");
+						jogada = sc.nextInt();
+						while (jogada < 1 || jogada > 9 || testeCompatibilidade(jogada)) {
+							System.out.printf("%nJogada inválida!%nPor favor digite novamente: ");
+							jogada = sc.nextInt();
+							System.out.println();
+						}
+					} else {
+						System.out.println("Vez do computado: ");
+						jogada = aleatorio.nextInt(9) + 1;
+						while (testeCompatibilidade(jogada)) {
+							jogada = aleatorio.nextInt(9) + 1;
+						}
+						System.out.println("O computador jogou na casa: " + jogada);
+					}
+				}
+				jogada(jogada, ordem);
+				quemGanhou();
+				imprimirJogo();
+				ordem = !ordem;
+			}
+			System.out.println();
+			System.out.println("===========================================");
+			System.out.println("                 Resultado                 ");
+			System.out.println("===========================================");
+			System.out.println();
+			resultado(j1, j2);
+		} else {
 			System.out.print("O primeiro jogador escolhe X ou O? ");
 			String j1 = sc.next().toUpperCase().trim();
 			while (!j1.equals("X") && !j1.equals("O")) {
@@ -42,7 +113,7 @@ public class Principal {
 			} else {
 				System.out.println();
 				System.out.printf("Primeiro Jogador fica com \"O\"; %nSegundo jogador fica com \"X\".");
-				j2 = "O";
+				j2 = "X";
 				System.out.println();
 			}
 			jogoBase();
@@ -73,12 +144,9 @@ public class Principal {
 			System.out.println();
 			resultado(j1, j2);
 			sc.close();
-			break;
-		default:
-			break;
 		}
 	}
-	
+
 	public static void jogada(int jogada, boolean peca) {
 		int i, j;
 		if (jogada == 1) {
@@ -152,7 +220,7 @@ public class Principal {
 			return false;
 		}
 	}
-	
+
 	public static void quemGanhou() {
 		int cont = 0;
 		for (int i = 0; i < jogo.length; i++) {
